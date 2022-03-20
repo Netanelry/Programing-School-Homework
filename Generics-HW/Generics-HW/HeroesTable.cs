@@ -8,7 +8,7 @@ namespace Generics_HW
 {
     internal class HeroesTable<T> where T : class
     {
-        public T[] knights { get; set; }
+        public T[] heroes { get; set; }
 
         public T this [ int index]
         {
@@ -16,47 +16,47 @@ namespace Generics_HW
             {
                 if (HeadCount() == 0)
                     return default(T);
-                else if (index <= knights.Length-1)
+                else if (index <= heroes.Length-1)
                 {
-                    if (knights[index] == null)
+                    if (heroes[index] == null)
                     {
                         for (int i = index - 1; i >= 0; i--)
                         {
-                            if (knights[i] != null)
-                                return knights[i];
+                            if (heroes[i] != null)
+                                return heroes[i];
                         }
                         return default(T);
                     }
                         else
-                            return knights[index];
+                            return heroes[index];
                 }
                 else
                 {
-                    return knights[index % knights.Length - 1];
+                    return heroes[index % heroes.Length - 1];
                 }
             }
             set
             {
-                knights[index] = value;
+                heroes[index] = value;
             }
         }
 
         public HeroesTable(int KnightsSize)
         {
-            knights = new T[KnightsSize];
+            heroes = new T[KnightsSize];
         }
 
         public void Delete(int index)
         {
-            knights[index] = default(T);
+            heroes[index] = default(T);
         }
 
         public int HeadCount()
         {
             int counter = 0;
-            for (int i = 0; i < knights.Length; i++)
+            for (int i = 0; i < heroes.Length; i++)
             {
-                if (knights[i] != null)
+                if (heroes[i] != null)
                 {
                     counter++;
                 }
@@ -69,7 +69,7 @@ namespace Generics_HW
             T[] attendingKnights = new T[HeadCount()];
             int i = 0;
 
-            foreach (T knight in knights)
+            foreach (T knight in heroes)
             {
                 if (knight != null)
                 {
@@ -82,7 +82,7 @@ namespace Generics_HW
 
         public void SetKnight(T knight,  int index)
         {
-            knights[index] = knight;
+            heroes[index] = knight;
         }
     }
 }
